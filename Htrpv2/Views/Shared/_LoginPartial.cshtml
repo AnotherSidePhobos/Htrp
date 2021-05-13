@@ -1,0 +1,71 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<Htrpv2.Models.ApplicationUser> signInManager
+
+<style>
+    body {
+        background: url(https://html5book.ru/wp-content/uploads/2015/10/background54.png);
+    }
+    .pressed-button2 {
+        text-decoration: none;
+        display: inline-block;
+        padding: 12px 40px;
+        margin: 10px 20px;
+        border-radius: 30px;
+        background-image: linear-gradient(45deg, #6ab1d7 0%, #33d9de 50%, #002878 100%);
+        background-position: 100% 0;
+        background-size: 1000% 200%;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 18px;
+        font-weight: 300;
+        color: white;
+        box-shadow: 0 16px 32px 0 rgba(0, 40, 120, .35);
+        transition: .5s;
+    }
+    .pressed-button {
+        text-decoration: none;
+        display: inline-block;
+        padding: 12px 40px;
+        margin: 10px 20px;
+        border-radius: 30px;
+        background-image: linear-gradient(45deg, #6ab1d7 0%, #33d9de 50%, #002878 100%);
+        background-position: 100% 0;
+        background-size: 200% 200%;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 24px;
+        font-weight: 300;
+        color: white;
+        box-shadow: 0 16px 32px 0 rgba(0, 40, 120, .35);
+        transition: .5s;
+    }
+
+        .pressed-button:hover {
+            box-shadow: 0 0 0 0 rgba(0, 40, 120, 0);
+            background-position: 0 0;
+        }
+    .fo {
+        color: white;
+        font-family: bS;
+    }
+    @@font-face {
+    font-family: bS; /* Гарнитура шрифта */
+    src: url(/wwwroot/webfonts/12ff.ttf); /* Путь к файлу со шрифтом */
+   }
+</style>
+
+
+@if (signInManager.IsSignedIn(User))
+{
+<form method="post" id="logoutForm" asp-action="Logoff" asp-controller="Account">
+    <span class="pressed-button2" style="font-family: bS" >Hello, @User.Identity.Name! </span>
+    <a class="pressed-button" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+
+</form> }
+            else
+            {
+<ul class="nav nav-bar-nav">
+    <li class="nav-item">
+        <a class="pressed-button" id="registerLink" asp-controller="Account" asp-action="Register">Register</a>
+    </li>
+    <li class="nav-item">
+        <a class="pressed-button" id="loginLink" asp-controller="Account" asp-action="Login">Sign In</a>
+    </li>
+</ul>}	

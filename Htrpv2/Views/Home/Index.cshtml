@@ -1,0 +1,90 @@
+﻿@{ ViewData["Title"] = "Home Page"; }
+
+
+<style>
+    /* Боковое навигационное меню */
+    .sidebar {
+        margin: 0;
+        padding: 0;
+        width: 200px;
+        background-color: #f1f1f1;
+        position: fixed;
+        height: 100%;
+        overflow: auto;
+    }
+
+        /* Сайдбар ссылки */
+        .sidebar a {
+            display: block;
+            color: black;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+            /* Активная/текущая ссылка */
+            .sidebar a.active {
+                background-color: #2bbccd;
+                color: white;
+            }
+
+            .sidebar a.active2 {
+                background-color: #1673a4;
+                color: white;
+            }
+
+            .sidebar a.active3 {
+                background-color: #022e7c;
+                color: white;
+            }
+
+            /* Ссылки при наведении мыши */
+            .sidebar a:hover:not(.active) {
+                background-color: #555;
+                color: white;
+            }
+            /* Ссылки при наведении мыши */
+            .sidebar a:hover:not(.active2) {
+                background-color: #555;
+                color: white;
+            }
+            /* Ссылки при наведении мыши */
+            .sidebar a:hover:not(.active3) {
+                background-color: #555;
+                color: white;
+            }
+</style>
+
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <!-- Сайдбар -->
+    <div class="sidebar">
+        <a class="active" asp-action="List" asp-controller="Home">List</a>
+
+    </div>
+}
+
+
+
+
+<!-- Содержимое страницы -->
+<div class="content">
+    <main>
+        <div class="main">
+            <div class="fonf">
+                <div class="text-center fon">
+                    @if (User.IsInRole(Htrpv2.Utility.Helper.User))
+                    {
+                        <h1 class="display-4">You logged as an user!</h1>
+                        <span>You have already added <span class="text-danger">@ViewBag.CountItems</span>  items in your list.</span>
+                    } 
+                    else
+                    {
+                        <h1 class="display-4">to get access you need to log in!</h1>
+                    }
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

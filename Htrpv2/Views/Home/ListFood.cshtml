@@ -1,0 +1,196 @@
+﻿@model IEnumerable<Item>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            background: url(https://html5book.ru/wp-content/uploads/2015/10/background54.png);
+        }
+
+        .pressed-button {
+            text-decoration: none;
+            display: inline-block;
+            padding: 12px 40px;
+            margin: 10px 20px;
+            border-radius: 30px;
+            background-image: linear-gradient(45deg, #6ab1d7 0%, #33d9de 50%, #002878 100%);
+            background-position: 100% 0;
+            background-size: 200% 200%;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 300;
+            color: white;
+            box-shadow: 0 16px 32px 0 rgba(0, 40, 120, .35);
+            transition: .5s;
+        }
+
+            .pressed-button:hover {
+                box-shadow: 0 0 0 0 rgba(0, 40, 120, 0);
+                background-position: 0 0;
+            }
+
+        .d {
+            background-color: #70b583;
+        }
+    </style>
+    <style>
+        /* Боковое навигационное меню */
+        .sidebar {
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            position: absolute;
+            top: 90px; /* Расстояние от верхнего края */
+            bottom: 0; /* Расстояние снизу  */
+        }
+
+            /* Сайдбар ссылки */
+            .sidebar a {
+                display: block;
+                color: black;
+                padding: 16px;
+                text-decoration: none;
+            }
+
+                /* Активная/текущая ссылка */
+                .sidebar a.active {
+                    background-color: #2bbccd;
+                    color: white;
+                }
+
+                .sidebar a.active2 {
+                    background-color: #1673a4;
+                    color: white;
+                }
+
+                .sidebar a.active3 {
+                    background-color: #022e7c;
+                    color: white;
+                }
+
+                /* Ссылки при наведении мыши */
+                .sidebar a:hover:not(.active) {
+                    background-color: #555;
+                    color: white;
+                }
+                /* Ссылки при наведении мыши */
+                .sidebar a:hover:not(.active2) {
+                    background-color: #555;
+                    color: white;
+                }
+                /* Ссылки при наведении мыши */
+                .sidebar a:hover:not(.active3) {
+                    background-color: #555;
+                    color: white;
+                }
+        /* Содержание страницы. Значение свойства margin-left должно соответствовать значению свойства width боковой панели */
+        div.content {
+            margin-left: 200px;
+            padding: 1px 16px;
+            height: 1000px;
+        }
+
+        /* На экранах шириной менее 700 пикселей превратить боковую панель в верхнюю панель */
+        @@media screen and (max-width: 700px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+                .sidebar a {
+                    float: left;
+                }
+
+            div.content {
+                margin-left: 0;
+            }
+        }
+
+        /* На экранах размером менее 400 пикселей панель отображать вертикально, а не горизонтально */
+        @@media screen and (max-width: 400px) {
+            .sidebar a {
+                text-align: center;
+                float: none;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- Сайдбар -->
+    <div class="sidebar">
+        <a class="active" asp-action="List" asp-controller="Home">All Items</a>
+        <a class="active2" asp-action="ListFood" asp-controller="Home">Food Items</a>
+        <a class="active3" href="#about">Entertainment Items</a>
+    </div>
+    <!-- Содержимое страницы -->
+    <div class="content">
+        <main>
+            <div class="main">
+                <div class=" container p-3">
+                    <div class="row pt-4">
+                        <div class="col-6">
+                            <h2>To take in hiking trip</h2>
+                        </div>
+                        <div class="col-6 text-right">
+
+                            <a asp-action="Create" asp-controller="Item" class="pressed-button"> Create new item</a>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.Count() > 0)
+                {
+    <br />
+                    <table class="table table default thead-dark table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Name:
+                                </th>
+                                <th>
+                                    Cost:
+                                </th>
+                                <th>
+                                    IsItThere:
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+            <tr>
+                <td width="35%">@item.Name</td>
+                <td width="35%">@item.Cost.ToString("c0")</td>
+                <td width="35%">@item.IsItThere</td>
+                <td width="40%">
+                    <div class="w-100 btn-group" role="group">
+                        <a asp-controller="Item" asp-action="Update" asp-route-Id="@item.Id" class="btn btn-primary mx-1">Update</a>
+                        <a asp-controller="Item" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger mx-1">Delete</a>
+                    </div>
+                </td>
+            </tr>}
+                        </tbody>
+                    </table> }
+                else
+                {
+    <p>No food items created yet</p>}
+
+            </div>
+        </main>
+    </div>
+
+
+</body>
+</html>
+

@@ -1,0 +1,37 @@
+﻿@model Htrpv2.Models.Item
+
+    <div class="container">
+            <main role="main" class="pb-3">
+                <form method="post" asp-action="Create">
+                        <div class="form-group row">
+                            <h2 class="text-black-50 pl-3">Add Item</h2>
+                        </div>
+                        <div class="row">
+                            <table class="table table-bordered table-striped" style="width:100%">
+                                <tr>
+                                    <td><label asp-for="Name"></label></td>
+                                    <td><label asp-for="Cost"></label></td>
+                                    <td><label asp-for="IsItThere"></label></td>
+                                    <td><label asp-for="IsItFood"></label></td>
+                                </tr>
+                                <tr>
+                                    <td><input asp-for="Name" class="form-control" /></td>
+                                    <td><input asp-for="Cost" class="form-control" /></td>
+                                    <td><input type="checkbox" asp-for="IsItThere" class="form-control" /></td>
+                                    <td><input type="checkbox" asp-for="IsItFood" class="form-control" /></td>
+                                </tr>
+                                <tr>
+
+                                    <td><input type="submit" style="color: #2c3e50" class="btn btn-info w-75" value="create" /></td>
+                                    <td><a asp-action="List" asp-controller="Home" class="nav-link text-dark btn btn-danger w-75">GO BACK</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                </form>
+
+                @section Scripts{
+                    @{
+                                        <partial name="_ValidationScriptsPartial" /> }
+                }
+            </main>
+    </div>

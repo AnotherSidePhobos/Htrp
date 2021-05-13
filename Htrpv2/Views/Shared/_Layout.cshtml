@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Htrp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+
+</head>
+<body>
+    <style>
+        body {
+            background: url(https://html5book.ru/wp-content/uploads/2015/10/background54.png);
+        }
+        .Mytitle {
+            text-decoration: none;
+            display: inline-flex;
+            margin: 0px 0px;
+            border-radius: 10px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-position: 100% 0;
+            font-size: 48px;
+            font-weight: 300;
+            color: white;
+            position: relative;
+            left: 120px;
+            top: 4px;
+        }
+        .pressed-button {
+            text-decoration: none;
+            display: inline-block;
+            padding: 12px 40px;
+            margin: 10px 20px;
+            border-radius: 30px;
+            background-image: linear-gradient(45deg, #6ab1d7 0%, #33d9de 50%, #002878 100%);
+            background-position: 100% 0;
+            background-size: 200% 200%;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 300;
+            color: white;
+            box-shadow: 0 16px 32px 0 rgba(0, 40, 120, .35);
+            transition: .5s;
+        }
+
+            .pressed-button:hover {
+                box-shadow: 0 0 0 0 rgba(0, 40, 120, 0);
+                background-position: 0 0;
+            }
+
+        .d {
+            background-color: #70b583;
+        }
+
+    </style>
+
+
+
+
+
+
+
+
+
+    <header class="d">
+        <nav class="navbar navbar-expand-sm">
+            <div class="container">
+                <a class="pressed-button" asp-area="" asp-controller="Home" asp-action="Index">Htrp</a>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+
+                        <li>
+                            <h1 class="Mytitle">Hiking trip</h1>
+                        </li>
+
+
+
+                    </ul>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <div>
+            <main role="main">
+
+
+                @RenderBody()
+            </main>
+    </div>
+
+
+
+    <!-- Copyright -->
+    <div style="text-align:center">
+        &copy; Untitled. All rights reserved. | @DateTime.Now.Year
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- Scripts -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/browser.min.js"></script>
+    <script src="js/breakpoints.min.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/main.js"></script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
